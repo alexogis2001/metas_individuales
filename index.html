@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Metas individuales de agentes · Noviembre 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="styles.css"></head><body><div class="wrap">
+<header><div><h1>Metas individuales de agentes</h1><p id="sub"></p></div><div class="seg" id="tabs" role="group" aria-label="Métrica"></div></header>
+<div class="flt"><input id="q" type="search" placeholder="Buscar por nombre o nómina" aria-label="Buscar agente"><select id="sup" aria-label="Supervisor"></select><select id="lap" aria-label="LAP"></select>
+<select id="st" aria-label="Estado"><option value="">Todos los estados</option><option value="ok">En ritmo</option><option value="r">En riesgo</option><option value="b">Bajo ritmo</option><option value="n">Sin meta</option></select>
+<select id="yr" aria-label="Periodo del histórico"><option value="">Todo el histórico</option><option>2024</option><option>2025</option><option>2026</option></select></div>
+<div class="flt"><label>Meta basada en <select id="base"><option value="p6">Promedio 6 meses</option><option value="p3">Promedio 3 meses</option><option value="p12">Promedio 12 meses</option><option value="q">Métrica Q del archivo</option></select></label>
+<label>Ajuste <input id="adj" type="number" step="5" value="0" aria-label="Ajuste porcentual">%</label><label>Día del mes <input id="day" type="number" min="1" max="30" value="19"></label><button class="rs" id="rst">Limpiar filtros</button></div>
+<p class="note" id="note"></p><section class="kp" id="kp"></section>
+<div class="seg" id="views" role="group" aria-label="Vista" style="margin-bottom:16px"><button data-v="res" aria-pressed="true">Resumen</button><button data-v="mx" aria-pressed="false">Matriz mensual</button></div>
+<main id="res">
+<div class="pn"><h2>Cierre mensual del equipo</h2><p class="hint">Suma de los agentes filtrados. Noviembre es parcial: la barra clara es la proyección al cierre.</p><div class="cv"><canvas id="c1"></canvas></div></div>
+<div class="g2"><div class="pn"><h2>Avance de cada agente en noviembre</h2><p class="hint">Línea punteada: avance esperado al día de corte. Haz clic en una barra para ver el historial.</p><div class="cv" id="c2w"><canvas id="c2"></canvas></div></div>
+<div><div class="pn"><h2>Por supervisor</h2><div class="cv" style="height:250px"><canvas id="c3"></canvas></div></div><div class="pn"><h2>Estado de los agentes</h2><div class="cv" style="height:190px"><canvas id="c4"></canvas></div></div></div></div>
+<div class="pn"><h2>Detalle por agente</h2><div class="tw"><table id="tb"></table></div></div></main>
+<section id="mx" hidden><div class="pn"><h2>Resultado de cada mes por agente</h2><p class="hint">Color según la meta actual de cada agente: verde la alcanzó, ámbar llegó al 80 %, rojo por debajo. Noviembre se colorea con su proyección.</p><div class="tw"><table class="mt" id="mt"></table></div></div></section>
+<dialog id="dg"><div id="dgc"></div></dialog></div>
+<script src="datos.js"></script>
+<script src="app.js"></script></body></html>
